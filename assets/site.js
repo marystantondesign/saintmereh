@@ -1,5 +1,12 @@
 // saintmereh: shared behavior (menu, footer links, toast).
 (function () {
+  // On wide screens the desktop layout replaces this page (see the script in each page's head).
+  if (window.SM_DESK) return;
+  if (window.matchMedia) {
+    var mq = matchMedia('(min-width: 900px)');
+    var onChange = function () { if (mq.matches) location.reload(); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
+  }
   var IG = 'https://www.instagram.com/saintmereh/';
   var LB = 'https://letterboxd.com/'; // TODO: your Letterboxd profile URL
   window.SM = { IG: IG, LB: LB };

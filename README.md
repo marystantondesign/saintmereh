@@ -12,7 +12,11 @@ This first build is intentionally grayscale: every box is a placeholder for a re
 - `/collections` → `/vhs` (with the pick-three game), `/found-photos`, `/cassettes`, `/stereographs`
 - `/considerations` → `/watching`, `/listening`, `/neighborhood`, `/curious`
 
-Shared styles and scripts live in `assets/`. `vercel.json` turns on clean URLs, so `/about` serves `about.html`.
+Shared styles and scripts live in `assets/`.
+
+## Phone and desktop
+
+The pages in the root are the phone layout. On screens 900px and wider, a small script in each page's `<head>` swaps in the matching desktop layout from `desktop/` at the same URL. The phone pages don't change at all; resizing across 900px reloads into the other layout. `vercel.json` turns on clean URLs, so `/about` serves `about.html`.
 
 ## Not wired up yet
 

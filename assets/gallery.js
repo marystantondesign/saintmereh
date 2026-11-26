@@ -1,6 +1,7 @@
 // saintmereh: staggered grid + full-screen swipe viewer, used by Ceramics, Rugs and the "looked at" collections.
 // Each page sets window.GALLERY = { items: [{ label, ratio }], caption } before loading this file.
 (function () {
+  if (window.SM_DESK) return;
   var cfg = window.GALLERY || { items: [] };
   var items = cfg.items.map(function (it, i) {
     return { label: it.label, r: it.ratio, g: 60 + ((i * 37) % 26) };
