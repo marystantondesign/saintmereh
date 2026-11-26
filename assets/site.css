@@ -1,0 +1,25 @@
+/* saintmereh: shared grayscale styles for the first build. Page-specific styles live in each page. */
+html { background: #e7e7e3; }
+body { max-width: 520px; margin: 0 auto; min-height: 100vh; background: #f3f3f1; box-shadow: 0 0 0 1px #e0e0dc; }
+a { color: inherit; text-decoration: none; }
+[hidden] { display: none !important; }
+
+.bar .bk, .bar .mn { font: 11px system-ui, -apple-system, sans-serif; color: #777; background: none; border: 0; cursor: pointer; padding: 6px 0; }
+.bar .mark { font: italic 20px Georgia, serif; color: #333; padding: 2px 0; }
+
+.foot a { text-decoration: underline; text-underline-offset: 2px; }
+.foot .fl { margin-top: 6px; }
+
+.sm-menu { position: fixed; inset: 0; z-index: 100; background: #f3f3f1; padding: max(16px, env(safe-area-inset-top, 0px)) 22px 28px; display: flex; flex-direction: column; overflow-y: auto; }
+.sm-menu .sm-top { display: flex; justify-content: space-between; align-items: center; }
+.sm-menu .sm-mark { font: italic 20px Georgia, serif; color: #333; }
+.sm-menu .sm-x { background: none; border: 0; font-size: 22px; color: #555; cursor: pointer; padding: 6px; }
+.sm-menu nav { margin-top: 40px; display: flex; flex-direction: column; gap: 6px; }
+.sm-menu nav a { font: italic 36px/1.2 Georgia, serif; color: #222; padding: 6px 0; }
+.sm-menu nav a[aria-current="page"] { color: #999; }
+.sm-menu .sm-ext { margin-top: auto; padding-top: 32px; display: flex; gap: 18px; font: 13px system-ui, -apple-system, sans-serif; color: #666; }
+
+.sm-toast { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); background: #222; color: #fff; font: 11px system-ui, sans-serif; padding: 7px 12px; border-radius: 14px; opacity: 0; transition: opacity .25s; z-index: 200; pointer-events: none; white-space: nowrap; }
+.sm-toast.on { opacity: 1; }
+
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid #888; outline-offset: 2px; }
