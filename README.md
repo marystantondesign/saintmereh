@@ -20,13 +20,7 @@ The pages in the root are the phone layout. On screens 900px and wider, a small 
 
 ## VHS game emails
 
-The pick-three form posts to `api/picks.js`, a Vercel function that emails the picks through [Resend](https://resend.com). In Vercel → Project → Settings → Environment Variables, add:
-
-- `RESEND_API_KEY`: a Resend API key
-- `PICKS_TO`: the address that receives submissions
-- `PICKS_FROM` (optional): a sender on a domain verified in Resend. Without it, Resend's test sender is used, which only delivers to the email the Resend account was created with.
-
-Then redeploy. Until the variables exist, the form shows "That didn't send" instead of pretending.
+The pick-three form sends straight to saintmereh@gmail.com through [FormSubmit](https://formsubmit.co) (no account or server settings). The first submission triggers a one-time "Activate form" email; after clicking it, every submission arrives by email.
 
 ## Not wired up yet
 
