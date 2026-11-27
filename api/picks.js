@@ -41,7 +41,10 @@ module.exports = async function handler(req, res) {
   if (!body || typeof body !== 'object') return res.status(400).json({ error: 'Send JSON.' });
 
   // Bots fill in the hidden "website" field; people never see it. Pretend it worked.
-  if (clean(body.website, 200)) return res.status(200).json({ ok: true });
+  if (clean(body.website, 200)) {
+    console.log('picks: dropped by the bot trap');
+    return res.status(200).json({ ok: true });
+  }
 
   const name = clean(body.name, MAX.name);
   const phone = clean(body.phone, 40);
@@ -57,7 +60,10 @@ module.exports = async function handler(req, res) {
 
   const key = process.env.RESEND_API_KEY;
   const to = process.env.PICKS_TO;
-  if (!key || !to) return res.status(500).json({ error: 'Email is not set up yet.' });
+  if (!key || !to) {
+    console.log('picks: missing RESEND_API_KEY or PICKS_TO');
+    return res.status(500).json({ error: 'Email is not set up yet.' });
+  }
 
   const handle = instagram ? (instagram[0] === '@' ? instagram : '@' + instagram) : '';
   const lines = [
@@ -85,9 +91,15 @@ module.exports = async function handler(req, res) {
         text: lines.join('\n'),
       }),
     });
-    if (!r.ok) return res.status(502).json({ error: 'The email service refused the message.' });
+    const info = await r.text();
+    if (!r.ok) {
+      console.log('picks: Resend refused', r.status, info);
+      return res.status(502).json({ error: 'The email service refused the message.' });
+    }
+    console.log('picks: sent to Resend', info);
     return res.status(200).json({ ok: true });
   } catch (e) {
+    console.log('picks: could not reach Resend', String(e));
     return res.status(502).json({ error: 'Could not reach the email service.' });
   }
 };
